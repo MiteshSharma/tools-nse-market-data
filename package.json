@@ -1,0 +1,80 @@
+{
+  "name": "@ethosagent/tools-nse-market-data",
+  "version": "0.1.0",
+  "description": "NSE India market data tools for Ethos AI agents — local SQLite storage, daily sync via Yahoo Finance, watchlist management, screener, and technical indicators.",
+  "keywords": [
+    "nse",
+    "india",
+    "stock-market",
+    "market-data",
+    "sqlite",
+    "ethos",
+    "ai-agent",
+    "trading",
+    "technical-analysis",
+    "yahoo-finance"
+  ],
+  "homepage": "https://github.com/MiteshSharma/tools-nse-market-data",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiteshSharma/tools-nse-market-data.git"
+  },
+  "bugs": "https://github.com/MiteshSharma/tools-nse-market-data/issues",
+  "license": "MIT",
+  "author": "Mitesh Sharma",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./cli": {
+      "import": "./dist/cli.js"
+    }
+  },
+  "bin": {
+    "nse-market-data": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "check": "npm run typecheck && npm run lint && npm run test",
+    "prepublishOnly": "npm run check && npm run build"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.9.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.13",
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.10.0",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.0",
+    "vitest": "^4.1.5"
+  },
+  "peerDependencies": {
+    "@ethosagent/types": ">=0.4.0"
+  },
+  "peerDependenciesMeta": {
+    "@ethosagent/types": {
+      "optional": true
+    }
+  }
+}
