@@ -6,9 +6,7 @@
 // Local type re-declarations (mirrors @ethosagent/types Tool interface)
 // ---------------------------------------------------------------------------
 
-type ToolResult =
-  | { ok: true; value: string }
-  | { ok: false; error: string; code: string };
+type ToolResult = { ok: true; value: string } | { ok: false; error: string; code: string };
 
 interface ToolContext {
   abortSignal?: AbortSignal;
@@ -47,8 +45,7 @@ let _store: MarketDataStore | null = null;
 function getStore(): MarketDataStore {
   if (!_store) {
     const dbPath =
-      process.env['NSE_MARKET_DATA_DB'] ??
-      join(homedir(), '.ethos', 'market-data', 'market.db');
+      process.env.NSE_MARKET_DATA_DB ?? join(homedir(), '.ethos', 'market-data', 'market.db');
     _store = new MarketDataStore(dbPath);
   }
   return _store;
@@ -60,7 +57,8 @@ function getStore(): MarketDataStore {
 
 const nseMarketCleanTool: Tool = {
   name: 'nse_market_clean',
-  description: 'Delete all market data from the local SQLite database. Use before a fresh backfill.',
+  description:
+    'Delete all market data from the local SQLite database. Use before a fresh backfill.',
   toolset: 'market',
   schema: { type: 'object', properties: {} },
   async execute(_args, _ctx): Promise<ToolResult> {
@@ -104,8 +102,7 @@ const nseMarketUpdateTool: Tool = {
       mode: {
         type: 'string',
         enum: ['watchlist', 'all'],
-        description:
-          'Update watchlist symbols only (default) or all instruments.',
+        description: 'Update watchlist symbols only (default) or all instruments.',
       },
     },
   },
@@ -201,8 +198,7 @@ const nseMarketScreenTool: Tool = {
       list_name: { type: 'string', description: 'Watchlist to screen (default: "default")' },
       min_volume_surge: {
         type: 'number',
-        description:
-          'Minimum volume/20d-avg ratio (e.g. 1.5 = 50% above average)',
+        description: 'Minimum volume/20d-avg ratio (e.g. 1.5 = 50% above average)',
       },
       near_high_pct: {
         type: 'number',
