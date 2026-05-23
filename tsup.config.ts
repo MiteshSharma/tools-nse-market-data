@@ -9,5 +9,7 @@ export default defineConfig({
   dts: true,
   clean: true,
   target: 'node24',
+  splitting: false,
   sourcemap: true,
+  external: ['@ethosagent/types'],
 });

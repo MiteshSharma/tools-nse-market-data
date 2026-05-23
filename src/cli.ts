@@ -14,7 +14,7 @@ import { NSE_NIFTY50 } from './symbols';
 function resolveDbPath(args: string[]): string {
   const dbFlag = args.indexOf('--db');
   if (dbFlag !== -1 && args[dbFlag + 1]) return args[dbFlag + 1] as string;
-  const envDb = process.env['NSE_MARKET_DATA_DB'];
+  const envDb = process.env.NSE_MARKET_DATA_DB;
   if (envDb) return envDb;
   return join(homedir(), '.ethos', 'market-data', 'market.db');
 }
