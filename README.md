@@ -48,6 +48,79 @@ nse-market-data screen --volume-surge 1.5 --near-high 5
 
 ---
 
+## Run locally (development & verification)
+
+### Step 1 — Install
+
+```bash
+npm install
+```
+
+### Step 2 — Build
+
+```bash
+npm run build
+# produces: dist/index.js  dist/cli.js  dist/index.d.ts  dist/cli.d.ts
+```
+
+### Step 3 — Run all commands to verify the tool
+
+Use `NSE_MARKET_DATA_DB=/tmp/test-market.db` to keep a throwaway database so your real data is untouched.
+
+```bash
+# -- Watchlist --
+node dist/cli.js watchlist add RELIANCE.NS
+node dist/cli.js watchlist add TCS.NS --notes "core holding"
+node dist/cli.js watchlist add INFY.NS --list tech
+node dist/cli.js watchlist show
+node dist/cli.js watchlist show --list tech
+node dist/cli.js watchlist remove TCS.NS
+node dist/cli.js watchlist show
+
+# -- Backfill (downloads from Yahoo Finance) --
+node dist/cli.js backfill --symbols RELIANCE.NS,TCS.NS
+node dist/cli.js backfill --symbols RELIANCE.NS --from 2025-01-01
+# Backfill all Nifty 50 (~2 min):
+node dist/cli.js backfill --all
+
+# -- History (reads local DB — backfill first) --
+node dist/cli.js history RELIANCE.NS --days 5
+node dist/cli.js history RELIANCE.NS --days 30
+
+# -- Update (gap-fill to today) --
+node dist/cli.js update
+node dist/cli.js update --mode all
+
+# -- Screener --
+node dist/cli.js screen
+node dist/cli.js screen --volume-surge 1.5
+node dist/cli.js screen --near-high 5
+node dist/cli.js screen --volume-surge 1.2 --near-high 10
+
+# -- Live quote (Yahoo Finance) --
+node dist/cli.js quote RELIANCE.NS
+node dist/cli.js quote TCS.NS
+node dist/cli.js quote ^NSEI
+
+# -- Clean --
+node dist/cli.js clean
+
+# -- Help --
+node dist/cli.js --help
+```
+
+**Tip — use a throwaway DB for testing:**
+
+```bash
+export NSE_MARKET_DATA_DB=/tmp/test-market.db
+node dist/cli.js watchlist add RELIANCE.NS
+node dist/cli.js backfill --symbols RELIANCE.NS
+node dist/cli.js history RELIANCE.NS --days 5
+node dist/cli.js screen
+```
+
+---
+
 ## CLI reference
 
 | Command | Description |
