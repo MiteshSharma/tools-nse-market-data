@@ -23,6 +23,7 @@
   "license": "MIT",
   "author": "Mitesh Sharma",
   "type": "module",
+  "packageManager": "npm@10.8.1",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -58,16 +59,16 @@
     "prepublishOnly": "npm run check && npm run build"
   },
   "dependencies": {
-    "better-sqlite3": "^12.9.0",
-    "zod": "^4.3.6"
+    "better-sqlite3": "12.10.0",
+    "zod": "4.4.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.13",
-    "@types/better-sqlite3": "^7.6.12",
-    "@types/node": "^22.10.0",
-    "tsup": "^8.5.1",
-    "typescript": "^6.0.0",
-    "vitest": "^4.1.5"
+    "@biomejs/biome": "2.4.15",
+    "@types/better-sqlite3": "7.6.13",
+    "@types/node": "22.19.19",
+    "tsup": "8.5.1",
+    "typescript": "6.0.3",
+    "vitest": "4.1.7"
   },
   "peerDependencies": {
     "@ethosagent/types": ">=0.4.0"

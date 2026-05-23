@@ -28,30 +28,9 @@ npm run lint:fix   # biome check --write .
 npm run check      # typecheck + lint + test (run before declaring done)
 ```
 
-## Sandbox workflow (when working inside the Docker sandbox)
+## Sandbox
 
-This repo lives at `/Users/mitesh/personal/sandbox/tools-nse-market-data/` inside the sandbox shared directory. The sandbox uses a worktree-based workflow to keep the canonical repo clean.
-
-**Before writing ANY code:**
-
-1. Create a feature branch:
-   ```bash
-   git -C /Users/mitesh/personal/sandbox/tools-nse-market-data checkout -b <slug>
-   ```
-2. Create a worktree:
-   ```bash
-   git -C /Users/mitesh/personal/sandbox/tools-nse-market-data worktree add /Users/mitesh/personal/sandbox/worktree/<slug> <slug>
-   ```
-3. Do ALL work in `/Users/mitesh/personal/sandbox/worktree/<slug>`
-
-**NEVER edit files directly in `/Users/mitesh/personal/sandbox/tools-nse-market-data/`** — use the worktree path instead. This rule has no exceptions, including for docs, CLAUDE.md, and plan files.
-
-When the work is done: merge the branch back to main, then remove the worktree:
-```bash
-git -C /Users/mitesh/personal/sandbox/tools-nse-market-data worktree remove /Users/mitesh/personal/sandbox/worktree/<slug>
-```
-
-**Plan files:** `tools-nse-market-data.md` and any future plan files at the repo root are gitignored-equivalent (edit them in place, no worktree needed — they are not shipped code).
+This repo lives at `/Users/mitesh/personal/sandbox/tools-nse-market-data/` inside the sandbox shared directory. Edit files directly — no git, no worktrees. Use `make check` before declaring any task done.
 
 ## Key conventions
 
